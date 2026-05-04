@@ -1,15 +1,17 @@
 import { useApp } from "@/contexts/AppContext";
-import { branches } from "@/data/branches";
+import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
-import { ChevronDown, MapPin, UtensilsCrossed } from "lucide-react";
+import { ChevronDown, MapPin, UtensilsCrossed, Settings } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function Header() {
+export default function Header({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
   const { lang, setLang, branchId, setBranchId } = useApp();
-  const branch = branches.find((b) => b.id === branchId)!;
+  const { branches } = useData();
+  const branch = branches.find((b) => b.id === branchId) ?? branches[0];
   const tt = t[lang];
+  if (!branch) return null;
 
   return (
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur-md border-b border-border">
