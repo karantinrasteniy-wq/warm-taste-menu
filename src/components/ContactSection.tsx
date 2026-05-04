@@ -1,13 +1,15 @@
 import { useApp } from "@/contexts/AppContext";
-import { branches, WHATSAPP_PHONE } from "@/data/branches";
+import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   const { lang, branchId } = useApp();
+  const { branches, whatsappPhone } = useData();
   const tt = t[lang];
-  const branch = branches.find((b) => b.id === branchId)!;
-  const waLink = `https://wa.me/${WHATSAPP_PHONE.replace(/\D/g, "")}`;
+  const branch = branches.find((b) => b.id === branchId) ?? branches[0];
+  if (!branch) return null;
+  const waLink = `https://wa.me/${whatsappPhone.replace(/\D/g, "")}`;
 
   return (
     <section id="contacts" className="px-4 pt-12 scroll-mt-20">

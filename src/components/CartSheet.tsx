@@ -36,7 +36,7 @@ export default function CartSheet({ open, onOpenChange }: { open: boolean; onOpe
   }, [items, branch, comment, lang, total, tt]);
 
   const checkout = () => {
-    const url = `https://wa.me/${WHATSAPP_PHONE.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${whatsappPhone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
     clearCart();
     onOpenChange(false);
