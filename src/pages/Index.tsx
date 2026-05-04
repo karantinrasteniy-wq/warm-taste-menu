@@ -1,16 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { AppProvider } from "@/contexts/AppContext";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import MenuSection from "@/components/MenuSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
+import BottomNav from "@/components/BottomNav";
+import CartSheet from "@/components/CartSheet";
+import ProfileSheet from "@/components/ProfileSheet";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [cartOpen, setCartOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <AppProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container max-w-5xl mx-auto pb-32">
+          <Hero />
+          <MenuSection />
+          <AboutSection />
+          <ContactSection />
+        </main>
+        <BottomNav onOpenCart={() => setCartOpen(true)} onOpenProfile={() => setProfileOpen(true)} />
+        <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
+        <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+      </div>
+    </AppProvider>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
