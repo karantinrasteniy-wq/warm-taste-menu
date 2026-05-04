@@ -69,6 +69,16 @@ export default function Header({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
             </button>
           ))}
         </div>
+
+        {onOpenAdmin && (
+          <button
+            onClick={onOpenAdmin}
+            aria-label="Admin"
+            className="h-8 w-8 grid place-items-center rounded-full bg-muted hover:bg-secondary text-foreground"
+          >
+            <Settings className="h-4 w-4" />
+          </button>
+        )}
       </div>
     </header>
   );
