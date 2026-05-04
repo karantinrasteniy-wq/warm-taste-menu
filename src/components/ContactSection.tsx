@@ -16,7 +16,7 @@ export default function ContactSection() {
       <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">{tt.contactsTitle}</h2>
       <div className="mt-4 grid sm:grid-cols-2 gap-3">
         <Info icon={<MapPin className="h-5 w-5" />} label={tt.address} value={branch.address[lang]} />
-        <Info icon={<Phone className="h-5 w-5" />} label={tt.phone} value={`+7 705 516 5700`} />
+        <Info icon={<Phone className="h-5 w-5" />} label={tt.phone} value={`+${whatsappPhone}`} />
         <Info icon={<Clock className="h-5 w-5" />} label={tt.hours} value={branch.hours} />
         <a
           href={waLink}
