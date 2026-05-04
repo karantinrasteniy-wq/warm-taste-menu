@@ -1,20 +1,22 @@
 import { useApp } from "@/contexts/AppContext";
-import { branches, WHATSAPP_PHONE } from "@/data/branches";
+import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
 import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   const { lang, branchId } = useApp();
+  const { branches, whatsappPhone } = useData();
   const tt = t[lang];
-  const branch = branches.find((b) => b.id === branchId)!;
-  const waLink = `https://wa.me/${WHATSAPP_PHONE.replace(/\D/g, "")}`;
+  const branch = branches.find((b) => b.id === branchId) ?? branches[0];
+  if (!branch) return null;
+  const waLink = `https://wa.me/${whatsappPhone.replace(/\D/g, "")}`;
 
   return (
     <section id="contacts" className="px-4 pt-12 scroll-mt-20">
       <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">{tt.contactsTitle}</h2>
       <div className="mt-4 grid sm:grid-cols-2 gap-3">
         <Info icon={<MapPin className="h-5 w-5" />} label={tt.address} value={branch.address[lang]} />
-        <Info icon={<Phone className="h-5 w-5" />} label={tt.phone} value={`+7 705 516 5700`} />
+        <Info icon={<Phone className="h-5 w-5" />} label={tt.phone} value={`+${whatsappPhone}`} />
         <Info icon={<Clock className="h-5 w-5" />} label={tt.hours} value={branch.hours} />
         <a
           href={waLink}

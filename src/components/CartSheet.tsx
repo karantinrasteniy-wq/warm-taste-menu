@@ -1,16 +1,17 @@
 import { useMemo } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useApp } from "@/contexts/AppContext";
-import { dishes } from "@/data/menu";
-import { branches, WHATSAPP_PHONE } from "@/data/branches";
+import { useData } from "@/contexts/DataContext";
 import { formatPrice, t } from "@/i18n/translations";
 import { Plus, Minus, Trash2, MessageCircle, ShoppingBag } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
   const { lang, cart, addToCart, decrement, removeFromCart, comment, setComment, branchId, clearCart } = useApp();
+  const { dishes, branches, whatsappPhone } = useData();
   const tt = t[lang];
-  const branch = branches.find((b) => b.id === branchId)!;
+  const branch = branches.find((b) => b.id === branchId) ?? branches[0];
+  if (!branch) return null;
 
   const items = useMemo(
     () => cart.map((c) => ({ ...c, dish: dishes.find((d) => d.id === c.id)! })).filter((i) => i.dish),
@@ -35,7 +36,7 @@ export default function CartSheet({ open, onOpenChange }: { open: boolean; onOpe
   }, [items, branch, comment, lang, total, tt]);
 
   const checkout = () => {
-    const url = `https://wa.me/${WHATSAPP_PHONE.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${whatsappPhone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
     clearCart();
     onOpenChange(false);
