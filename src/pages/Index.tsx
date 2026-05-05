@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { AppProvider } from "@/contexts/AppContext";
-import { DataProvider } from "@/contexts/DataContext";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import MenuSection from "@/components/MenuSection";
@@ -16,23 +14,19 @@ const Index = () => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <DataProvider>
-      <AppProvider>
-        <div className="min-h-screen bg-background">
-          <Header />
-          <main className="container max-w-5xl mx-auto pb-32">
-            <Hero />
-            <MenuSection />
-            <AboutSection />
-            <ContactSection />
-          </main>
-          <StickyCheckout onOpen={() => setCartOpen(true)} />
-          <BottomNav onOpenCart={() => setCartOpen(true)} onOpenProfile={() => setProfileOpen(true)} />
-          <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
-          <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-        </div>
-      </AppProvider>
-    </DataProvider>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="container max-w-5xl mx-auto pb-32">
+        <Hero />
+        <MenuSection />
+        <AboutSection />
+        <ContactSection />
+      </main>
+      <StickyCheckout onOpen={() => setCartOpen(true)} />
+      <BottomNav onOpenCart={() => setCartOpen(true)} onOpenProfile={() => setProfileOpen(true)} />
+      <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
+      <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
+    </div>
   );
 };
 
