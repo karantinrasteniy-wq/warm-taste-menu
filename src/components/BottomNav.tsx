@@ -22,7 +22,7 @@ export default function BottomNav({ onOpenCart, onOpenProfile }: { onOpenCart: (
   ];
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 safe-bottom">
+    <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 safe-bottom">
       <div className="mx-auto max-w-2xl px-3 pb-3">
         <div className="rounded-full bg-card/95 backdrop-blur border border-border shadow-soft flex items-center justify-around px-2 py-1.5">
           {items.map((it) => {
