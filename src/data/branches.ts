@@ -4,6 +4,7 @@ export interface Branch {
   address: { ru: string; kz: string };
   hours: string;
   twoGisUrl?: string;
+  instagramUrl?: string;
 }
 
 export const branches: Branch[] = [
@@ -13,6 +14,7 @@ export const branches: Branch[] = [
     address: { ru: "пр. Абая, 45, Алматы", kz: "Абай даң., 45, Алматы" },
     hours: "10:00 — 23:00",
     twoGisUrl: "https://2gis.kz/almaty/search/Абая%2045",
+    instagramUrl: "https://instagram.com/tandyr.cafe",
   },
   {
     id: "north",
@@ -20,6 +22,7 @@ export const branches: Branch[] = [
     address: { ru: "ул. Жандосова, 102, Алматы", kz: "Жандосов к., 102, Алматы" },
     hours: "10:00 — 22:00",
     twoGisUrl: "https://2gis.kz/almaty/search/Жандосова%20102",
+    instagramUrl: "https://instagram.com/tandyr.cafe",
   },
   {
     id: "south",
@@ -27,6 +30,7 @@ export const branches: Branch[] = [
     address: { ru: "мкр. Самал-2, 78, Алматы", kz: "Самал-2 ы.а., 78, Алматы" },
     hours: "11:00 — 23:00",
     twoGisUrl: "https://2gis.kz/almaty/search/Самал-2%2078",
+    instagramUrl: "https://instagram.com/tandyr.cafe",
   },
 ];
 

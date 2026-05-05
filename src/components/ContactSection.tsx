@@ -1,7 +1,7 @@
 import { useApp } from "@/contexts/AppContext";
 import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
 
 export default function ContactSection() {
   const { lang, branchId } = useApp();
@@ -22,18 +22,33 @@ export default function ContactSection() {
           <div className="min-w-0 flex-1">
             <div className="text-xs uppercase tracking-wide text-muted-foreground">{tt.address}</div>
             <div className="font-semibold text-sm mt-0.5 break-words">{branch.address[lang]}</div>
-            {branch.twoGisUrl && (
-              <a
-                href={branch.twoGisUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#4CB85C] text-white text-xs font-bold px-3 py-1.5 hover:opacity-90 transition-opacity"
-                aria-label="Открыть в 2ГИС"
-              >
-                <span className="h-4 w-4 rounded-full bg-white text-[#4CB85C] grid place-items-center text-[10px] font-extrabold">2</span>
-                Открыть в 2ГИС
-              </a>
-            )}
+            <div className="mt-2 flex flex-wrap gap-2">
+              {branch.twoGisUrl && (
+                <a
+                  href={branch.twoGisUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#4CB85C] text-white text-xs font-bold px-3 py-1.5 hover:opacity-90 transition-opacity"
+                  aria-label="Открыть в 2ГИС"
+                >
+                  <span className="h-4 w-4 rounded-full bg-white text-[#4CB85C] grid place-items-center text-[10px] font-extrabold">2</span>
+                  2ГИС
+                </a>
+              )}
+              {branch.instagramUrl && (
+                <a
+                  href={branch.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full text-white text-xs font-bold px-3 py-1.5 hover:opacity-90 transition-opacity"
+                  style={{ background: "linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)" }}
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-3.5 w-3.5" />
+                  Instagram
+                </a>
+              )}
+            </div>
           </div>
         </div>
         <Info icon={<Phone className="h-5 w-5" />} label={tt.phone} value={`+${whatsappPhone}`} />
