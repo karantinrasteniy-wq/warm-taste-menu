@@ -15,7 +15,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header onOpenCart={() => setCartOpen(true)} onOpenProfile={() => setProfileOpen(true)} />
       <main className="container max-w-6xl mx-auto pb-32 md:pb-16">
         <Hero />
         <MenuSection />
