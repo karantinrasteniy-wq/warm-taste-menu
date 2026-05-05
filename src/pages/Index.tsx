@@ -9,19 +9,17 @@ import ContactSection from "@/components/ContactSection";
 import BottomNav from "@/components/BottomNav";
 import CartSheet from "@/components/CartSheet";
 import ProfileSheet from "@/components/ProfileSheet";
-import AdminSheet from "@/components/AdminSheet";
 import StickyCheckout from "@/components/StickyCheckout";
 
 const Index = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [adminOpen, setAdminOpen] = useState(false);
 
   return (
     <DataProvider>
       <AppProvider>
         <div className="min-h-screen bg-background">
-          <Header onOpenAdmin={() => setAdminOpen(true)} />
+          <Header />
           <main className="container max-w-5xl mx-auto pb-32">
             <Hero />
             <MenuSection />
@@ -32,7 +30,6 @@ const Index = () => {
           <BottomNav onOpenCart={() => setCartOpen(true)} onOpenProfile={() => setProfileOpen(true)} />
           <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
           <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen} />
-          <AdminSheet open={adminOpen} onOpenChange={setAdminOpen} />
         </div>
       </AppProvider>
     </DataProvider>
