@@ -15,7 +15,7 @@ interface DataCtx {
 }
 
 const Ctx = createContext<DataCtx | null>(null);
-const LS = "tandyr-data-v1";
+const LS = "tandyr-data-v2";
 
 interface Persisted { dishes: Dish[]; branches: Branch[]; phone: string }
 
