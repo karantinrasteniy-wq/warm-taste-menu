@@ -18,29 +18,32 @@ export interface Dish {
   name: { ru: string; kz: string };
   description: { ru: string; kz: string };
   price: number;
+  oldPrice?: number;
 }
 
 export const dishes: Dish[] = [
   {
     id: "plov",
     category: "main",
-    images: [plov, beshbarmak],
+    images: [plov],
     name: { ru: "Плов по-домашнему", kz: "Үй палауы" },
     description: { ru: "Рассыпчатый рис, нежная баранина и сладкая морковь.", kz: "Үгілмелі күріш, жұмсақ қой еті және тәтті сәбіз." },
     price: 1900,
+    oldPrice: 2300,
   },
   {
     id: "beshbarmak",
     category: "main",
-    images: [beshbarmak, lagman],
+    images: [beshbarmak],
     name: { ru: "Бешбармак", kz: "Бешбармақ" },
     description: { ru: "Традиционное блюдо: тонкое тесто и сочное мясо.", kz: "Дәстүрлі тағам: жұқа қамыр және шырынды ет." },
     price: 2500,
+    oldPrice: 2900,
   },
   {
     id: "manti",
     category: "main",
-    images: [manti, samsa],
+    images: [manti],
     name: { ru: "Манты (4 шт)", kz: "Манты (4 дана)" },
     description: { ru: "Сочные манты на пару со сметаной.", kz: "Қаймағымен буға пісірілген манты." },
     price: 1600,
@@ -48,10 +51,11 @@ export const dishes: Dish[] = [
   {
     id: "lagman",
     category: "main",
-    images: [lagman, plov],
+    images: [lagman],
     name: { ru: "Лагман", kz: "Лағман" },
     description: { ru: "Густой бульон, домашняя лапша и говядина.", kz: "Қою сорпа, үй кеспесі және сиыр еті." },
     price: 1700,
+    oldPrice: 2000,
   },
   {
     id: "samsa",

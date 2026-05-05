@@ -1,12 +1,12 @@
 import { useApp } from "@/contexts/AppContext";
 import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
-import { ChevronDown, MapPin, UtensilsCrossed, Settings } from "lucide-react";
+import { ChevronDown, MapPin, UtensilsCrossed } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function Header({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
+export default function Header() {
   const { lang, setLang, branchId, setBranchId } = useApp();
   const { branches } = useData();
   const branch = branches.find((b) => b.id === branchId) ?? branches[0];
@@ -70,15 +70,6 @@ export default function Header({ onOpenAdmin }: { onOpenAdmin?: () => void }) {
           ))}
         </div>
 
-        {onOpenAdmin && (
-          <button
-            onClick={onOpenAdmin}
-            aria-label="Admin"
-            className="h-8 w-8 grid place-items-center rounded-full bg-muted hover:bg-secondary text-foreground"
-          >
-            <Settings className="h-4 w-4" />
-          </button>
-        )}
       </div>
     </header>
   );
