@@ -1,10 +1,15 @@
 import { useApp } from "@/contexts/AppContext";
 import { useData } from "@/contexts/DataContext";
 import { t } from "@/i18n/translations";
-import { ChevronDown, MapPin, UtensilsCrossed } from "lucide-react";
+import { ChevronDown, MapPin, UtensilsCrossed, ShoppingBag, User } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+interface HeaderProps {
+  onOpenCart?: () => void;
+  onOpenProfile?: () => void;
+}
 
 export default function Header() {
   const { lang, setLang, branchId, setBranchId } = useApp();
