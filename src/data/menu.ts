@@ -18,6 +18,7 @@ export interface Dish {
   name: { ru: string; kz: string };
   description: { ru: string; kz: string };
   price: number;
+  oldPrice?: number;
 }
 
 export const dishes: Dish[] = [

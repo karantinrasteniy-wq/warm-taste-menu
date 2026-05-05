@@ -1,54 +1,29 @@
-import { useState } from "react";
 import { Dish } from "@/data/menu";
 import { useApp } from "@/contexts/AppContext";
 import { formatPrice, t } from "@/i18n/translations";
-import { Plus, Minus, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 export default function DishCard({ dish }: { dish: Dish }) {
   const { lang, cart, addToCart, decrement } = useApp();
   const tt = t[lang];
-  const [idx, setIdx] = useState(0);
   const inCart = cart.find((i) => i.id === dish.id);
-
-  const prev = () => setIdx((i) => (i - 1 + dish.images.length) % dish.images.length);
-  const next = () => setIdx((i) => (i + 1) % dish.images.length);
+  const hasDiscount = typeof dish.oldPrice === "number" && dish.oldPrice > dish.price;
 
   return (
     <article className="group bg-card rounded-3xl overflow-hidden shadow-card border border-border/50 flex flex-col">
       <div className="relative aspect-square overflow-hidden bg-muted">
         <img
-          src={dish.images[idx]}
+          src={dish.images[0]}
           alt={dish.name[lang]}
           loading="lazy"
           width={800}
           height={800}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {dish.images.length > 1 && (
-          <>
-            <button
-              onClick={prev}
-              aria-label="Prev"
-              className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 grid place-items-center rounded-full bg-background/80 backdrop-blur hover:bg-background"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 grid place-items-center rounded-full bg-background/80 backdrop-blur hover:bg-background"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-              {dish.images.map((_, i) => (
-                <span
-                  key={i}
-                  className={`h-1.5 rounded-full transition-all ${i === idx ? "w-4 bg-background" : "w-1.5 bg-background/60"}`}
-                />
-              ))}
-            </div>
-          </>
+        {hasDiscount && (
+          <span className="absolute top-2 left-2 rounded-full bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 shadow-sm">
+            -{Math.round((1 - dish.price / (dish.oldPrice as number)) * 100)}%
+          </span>
         )}
       </div>
 
@@ -56,7 +31,14 @@ export default function DishCard({ dish }: { dish: Dish }) {
         <h3 className="font-bold text-base leading-tight">{dish.name[lang]}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2 flex-1">{dish.description[lang]}</p>
         <div className="mt-2 flex items-center justify-between gap-2">
-          <span className="font-extrabold text-lg">{formatPrice(dish.price, lang)}</span>
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <span className="font-extrabold text-lg text-brand-green">{formatPrice(dish.price, lang)}</span>
+            {hasDiscount && (
+              <span className="text-sm text-muted-foreground line-through decoration-destructive/70">
+                {formatPrice(dish.oldPrice as number, lang)}
+              </span>
+            )}
+          </div>
           {inCart ? (
             <div className="flex items-center gap-1 rounded-full bg-brand-green text-primary-foreground p-1">
               <button onClick={() => decrement(dish.id)} className="h-7 w-7 grid place-items-center rounded-full hover:bg-black/10" aria-label="-">
