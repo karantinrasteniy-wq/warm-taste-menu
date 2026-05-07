@@ -52,10 +52,10 @@ export default function DishCard({ dish }: { dish: Dish }) {
           ) : (
             <button
               onClick={() => addToCart(dish.id)}
-              className="rounded-full bg-brand-green text-primary-foreground text-sm font-semibold px-3 py-1.5 hover:bg-brand-green/90 flex items-center gap-1"
+              aria-label={tt.addToCart}
+              className="h-9 w-9 grid place-items-center rounded-full bg-brand-green text-primary-foreground hover:bg-brand-green/90"
             >
               <Plus className="h-4 w-4" />
-              {tt.addToCart}
             </button>
           )}
         </div>
