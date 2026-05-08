@@ -31,20 +31,20 @@ export default function DishCard({ dish }: { dish: Dish }) {
         <h3 className="font-bold text-base leading-tight">{dish.name[lang]}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2 flex-1">{dish.description[lang]}</p>
         <div className="mt-2 flex items-center justify-between gap-2">
-          <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="font-extrabold text-lg text-brand-green">{formatPrice(dish.price, lang)}</span>
+          <div className="flex flex-col min-w-0">
+            <span className="font-extrabold text-base sm:text-lg text-brand-green leading-tight truncate">{formatPrice(dish.price, lang)}</span>
             {hasDiscount && (
-              <span className="text-sm text-muted-foreground line-through decoration-destructive/70">
+              <span className="text-xs text-muted-foreground line-through decoration-destructive/70 leading-tight">
                 {formatPrice(dish.oldPrice as number, lang)}
               </span>
             )}
           </div>
           {inCart ? (
-            <div className="flex items-center gap-1 rounded-full bg-brand-green text-primary-foreground p-1">
+            <div className="shrink-0 flex items-center gap-0.5 rounded-full bg-brand-green text-primary-foreground p-0.5">
               <button onClick={() => decrement(dish.id)} className="h-7 w-7 grid place-items-center rounded-full hover:bg-black/10" aria-label="-">
                 <Minus className="h-3.5 w-3.5" />
               </button>
-              <span className="text-sm font-bold w-5 text-center">{inCart.qty}</span>
+              <span className="text-sm font-bold w-4 text-center tabular-nums">{inCart.qty}</span>
               <button onClick={() => addToCart(dish.id)} className="h-7 w-7 grid place-items-center rounded-full hover:bg-black/10" aria-label="+">
                 <Plus className="h-3.5 w-3.5" />
               </button>
@@ -53,7 +53,7 @@ export default function DishCard({ dish }: { dish: Dish }) {
             <button
               onClick={() => addToCart(dish.id)}
               aria-label={tt.addToCart}
-              className="h-9 w-9 grid place-items-center rounded-full bg-brand-green text-primary-foreground hover:bg-brand-green/90"
+              className="shrink-0 h-9 w-9 grid place-items-center rounded-full bg-brand-green text-primary-foreground hover:bg-brand-green/90"
             >
               <Plus className="h-4 w-4" />
             </button>
